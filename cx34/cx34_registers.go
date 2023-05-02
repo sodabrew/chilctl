@@ -278,13 +278,12 @@ Table of registers with values that changed
 
 // Known Register values.
 const (
-	ACMode                     Register = 141 // 0 = cool, 1 = heat
-	TargetACCoolingModeTemp    Register = 142
-	TargetACHeatingModeTemp    Register = 143
-	TargetDomesticHotWaterTemp Register = 144
-	DomesticHotWaterTemp Register = 146
+	ACMode                                Register = 141 // 0 = cool, 1 = heat
+	TargetACCoolingModeTemp               Register = 142
+	TargetACHeatingModeTemp               Register = 143
+	TargetDomesticHotWaterTemp            Register = 144
 	// See page 47-48 of https://www.chiltrix.com/documents/CX34-IOM-3.pdf
-	ECWaterPumpMinimumSpeed Register = 53 // 40-80 (corresponding to 40%-80%): Minimum electronically commutated water pump speed.
+	ECWaterPumpMinimumSpeed               Register = 53 // 40-80 (corresponding to 40%-80%): Minimum electronically commutated water pump speed.
 	// See page 51 of https://www.chiltrix.com/documents/CX34-IOM-3.pdf
 	OutPipeTemp                           Register = 200
 	CompressorDischargeTemp               Register = 201
@@ -300,70 +299,69 @@ const (
 	P05Status                             Register = 216
 	P06Status                             Register = 217
 	P07Status                             Register = 218
-	P08Status                             Register = 219 // 0= DHW valid, 1= DHW invalid 0=DHW valid, 1= DHW invalid
-	P09Status                             Register = 220 // 0=Heating valid,	1= Heating invalid	AC heating valid= 0 valid, 	1= invalid
-	P10Status                             Register = 221 // 0=cooling valid,	1=cooling invalid	0=cooling valid,	1=cooling invalid
-	HighPressureSwitchStatus              Register = 222 // 1= on, 0= off 1= on, 0= off
-	LowPressureSwitchStatus               Register = 223 // 1=on, 0= off 1=on, 0= off
-	SecondHighPressureSwitchStatus        Register = 224 // 1=on, 0= off 1=on, 0= off
-	InnerWaterFlowSwitch                  Register = 225 // 1=on, 0= off 1=on, 0= off
-	CompressorFrequency                   Register = 227 // Displays the actual operating	frequency	Show actual frequency
-	ThermalSwitchStatus                   Register = 228 // 1=on, 0= off 1=on, 0= off
-	OutdoorFanMotor                       Register = 229 // 1= run, 0= stop 1=on, 0= off
-	ElectricalValve1                      Register = 230 // 1= run, 0= stop 1= run, 0= stop
-	ElectricalValve2                      Register = 231 // 1= run, 0= stop 1= run, 0= stop
-	ElectricalValve3                      Register = 232 // 1= run, 0= stop 1= run, 0= stop
-	ElectricalValve4                      Register = 233 // 1= run, 0= stop 1= run, 0= stop
-	C4WaterPump                           Register = 234 // 1= run, 0= stop 1= run, 0= stop
-	C5WaterPump                           Register = 235 // 1= run, 0= stop 1= run, 0= stop
-	C6waterPump                           Register = 236 // 1= run, 0= stop 1= run, 0= stop
-	AccumulativeDaysAFterLastVirusKilling Register = 237 // The accumulative days after last	virus killing	0-99 (From the last complete	sterilization to the present,	cumulative number of days）	0-99 (from the last complete	sterilization to the present,	cumulative number of days)
-	OutdoorModularTemp                    Register = 238 // -30~97℃ -30~97℃
-	ExpansionValve1OpeningDegree          Register = 239 // 0~500 0~500
-	ExpansionValve2OpeningDegree          Register = 240 // 0~500 0~500
-	InnerPipeTemp                         Register = 241 // -30~97℃ -30~97℃
-	HeatingMethod2TargetTemperature       Register = 242 // -30~97℃ -30~97℃
-	IndoorTemperatureControlSwitch        Register = 243 // 1=on, 0= off 1=on, 0= off
-	FanType                               Register = 244 // 0= AC fan, 1= EC fan 1,	2= EC fan 2	0= AC fan, 1= EC fan 1,	2= EC fan 2
+	P08Status                             Register = 219 // 0=DHW valid, 1=DHW invalid
+	P09Status                             Register = 220 // 0=Heating valid, 1=Heating invalid
+	P10Status                             Register = 221 // 0=Cooling valid, 1=Cooling invalid
+	HighPressureSwitchStatus              Register = 222 // 1=on, 0=off
+	LowPressureSwitchStatus               Register = 223 // 1=on, 0=off
+	SecondHighPressureSwitchStatus        Register = 224 // 1=on, 0=off
+	InnerWaterFlowSwitch                  Register = 225 // 1=on, 0=off
+	CompressorFrequency                   Register = 227 // Displays the actual operating frequency
+	ThermalSwitchStatus                   Register = 228 // 1=on, 0=off
+	OutdoorFanMotor                       Register = 229 // 1=on, 0=off
+	ElectricalValve1                      Register = 230 // 1=run, 0=stop
+	ElectricalValve2                      Register = 231 // 1=run, 0=stop
+	ElectricalValve3                      Register = 232 // 1=run, 0=stop
+	ElectricalValve4                      Register = 233 // 1=run, 0=stop
+	C4WaterPump                           Register = 234 // 1=run, 0=stop
+	C5WaterPump                           Register = 235 // 1=run, 0=stop
+	C6waterPump                           Register = 236 // 1=run, 0=stop
+	AccumulativeDaysAFterLastVirusKilling Register = 237 // Days since last virus killing 0-99
+	OutdoorModularTemp                    Register = 238 // -30~97 celsius
+	ExpansionValve1OpeningDegree          Register = 239 // 0~500
+	ExpansionValve2OpeningDegree          Register = 240 // 0~500
+	InnerPipeTemp                         Register = 241 // -30~97 celsius
+	HeatingMethod2TargetTemperature       Register = 242 // -30~97 celsius
+	IndoorTemperatureControlSwitch        Register = 243 // 1=on, 0=off
+	FanType                               Register = 244 // 0=AC fan, 1=EC fan 1, 2=EC fan 2
 	ECFanMotor1Speed                      Register = 245 // 0~3000 0~3000
-	ECFanMotor2Speed                      Register = 246 //0~3000 0~3000
-	WaterPumpTypes                        Register = 247 // 0= AC Water pump	1= EC Water pump	0= AC Water pump	1= EC Water pump
-	InternalPumpSpeed                     Register = 248 // (C4) 1~10 （10 Show 100%） 1~10 (10 means 100%)
-	BoosterPumpSpeed                      Register = 249 //1~10 （10 Show 100%） 1~10 (10 means 100%)
-	InductorACCurrent                     Register = 250 //0~50A 0~50A
-	DriverWorkingStatusValue              Register = 251 //Hexadecimal value Hexadecimal values
-	CompressorShutDownCode                Register = 252 //Hexadecimal value Hexadecimal values
-	DriverAllowedHighestFrequency         Register = 253 //30-120Hz 30-120Hz
-	ReduceFrequencyTemperature            Register = 254 //setting	55~200℃ 55~200℃
-	InputACVoltage                        Register = 255 //0~550V 0~550V
-	InputACCurrent                        Register = 256 //0~50A（IPM test） 0~50A（IPM Check）
-	CompressorPhaseCurrent                Register = 257 //0~50A（IPM test） 0~50A（IPM Check）
-	BusLineVoltage                        Register = 258 //0~750V 0~750V
-	FanShutdownCode                       Register = 259 // Hexadecimal value Hexadecimal values
-	IPMTemp                               Register = 260 //55~200℃ 55~200℃
-	CompressorTotalRunningTime            Register = 261 //	Will reset after power cycle	0~65000 0~65000 hour
-	DomesticHotWaterTankTemp              Register = 280
+	ECFanMotor2Speed                      Register = 246 // 0~3000 0~3000
+	WaterPumpTypes                        Register = 247 // 0=AC Water pump, 1=EC Water pump
+	InternalPumpSpeed                     Register = 248 // (C4) 1~10 (10 means 100%)
+	BoosterPumpSpeed                      Register = 249 // 1~10 (10 means 100%)
+	InductorACCurrent                     Register = 250 // 0~50A
+	DriverWorkingStatusValue              Register = 251 // Hexadecimal value
+	CompressorShutDownCode                Register = 252 // Hexadecimal value
+	DriverAllowedHighestFrequency         Register = 253 // 30-120Hz
+	ReduceFrequencyTemperature            Register = 254 // setting 55~200 celsius
+	InputACVoltage                        Register = 255 // 0~550V
+	InputACCurrent                        Register = 256 // 0~50A（IPM test)
+	CompressorPhaseCurrent                Register = 257 // 0~50A（IPM test）
+	BusLineVoltage                        Register = 258 // 0~750V 0~750V
+	FanShutdownCode                       Register = 259 // Hexadecimal value
+	IPMTemp                               Register = 260 // 55~200 celsius
+	CompressorTotalRunningTime            Register = 261 // Hours since last power cycle 0~65000
 
 	// Inferred values.
-	WaterInletSensorTemp1 Register = 281
-	WaterInletSensorTemp2 Register = 282
-	WaterInletSensorTemp3 Register = 282
-	CurrentFaultCode      Register = 284 // Set to 32 when I get a P5 error, not sure about other faults.
+	DomesticHotWaterTankTemp              Register = 280
+	WaterInletSensorTemp1                 Register = 281
+	WaterInletSensorTemp2                 Register = 282
+	CurrentFaultCode                      Register = 284 // Set to 32 when I get a P5 error, not sure about other faults.
 )
 
 // Source: https://www.chiltrix.com/control-options/Remote-Gateway-BACnet-Guide-rev2.pdf
 var registerNames = map[Register]string{
-	ACMode:                  "ACMode",
-	TargetACCoolingModeTemp: "TargetACCoolingModeTemp",
-	TargetACHeatingModeTemp: "TargetACHeatingModeTemp",
-	TargetDomesticHotWaterTemp: "TargetDomesticHotWaterTemp", // was: "Din7 AC Cooling Mode Switch",
-	DomesticHotWaterTankTemp: "DomesticHotWaterTankTemp",
+	ACMode:                                "ACMode",
+	TargetACCoolingModeTemp:               "TargetACCoolingModeTemp",
+	TargetACHeatingModeTemp:               "TargetACHeatingModeTemp",
+	TargetDomesticHotWaterTemp:            "TargetDomesticHotWaterTemp",            // was: "Din7 AC Cooling Mode Switch",
 	// Starting at 200, it's all the C parameters from the details screen.
-	WaterInletSensorTemp1: "WaterInletSensorTemp1",
-	WaterInletSensorTemp2: "WaterInletSensorTemp2",
+	DomesticHotWaterTankTemp:              "DomesticHotWaterTankTemp",
+	WaterInletSensorTemp1:                 "WaterInletSensorTemp1",
+	WaterInletSensorTemp2:                 "WaterInletSensorTemp2",
 
 	// P0-... registers.
-	ECWaterPumpMinimumSpeed: "ECWaterPumpMinimumSpeed",
+	ECWaterPumpMinimumSpeed:               "ECWaterPumpMinimumSpeed",
 
 	OutPipeTemp:                           "OutPipeTemp",
 	CompressorDischargeTemp:               "CompressorDischargeTemp",
@@ -372,55 +370,54 @@ var registerNames = map[Register]string{
 	PlateHeatExchangerTemp:                "PlateHeatExchangerTemp",
 	ACOutletWaterTemp:                     "ACOutletWaterTemp",
 	SolarTemp:                             "SolarTemp",
-	CompressorCurrentValueP15:             "CompressorCurrentValueP15", // 0.00-30.0A
-	WaterFlowRate:                         "WaterFlowRate",             // tenths of a liter per minute
+	CompressorCurrentValueP15:             "CompressorCurrentValueP15",             // 0.00-30.0A
+	WaterFlowRate:                         "WaterFlowRate",                         // tenths of a liter per minute
 	P03Status:                             "P03Status",
 	P04Status:                             "P04Status",
 	P05Status:                             "P05Status",
 	P06Status:                             "P06Status",
 	P07Status:                             "P07Status",
-	P08Status:                             "P08Status",                             // 0= DHW valid, 1= DHW invalid 0=DHW valid, 1= DHW invalid
-	P09Status:                             "P09Status",                             // 0=Heating valid,	1= Heating invalid	AC heating valid= 0 valid, 	1= invalid
-	P10Status:                             "P10Status",                             // 0=cooling valid,	1=cooling invalid	0=cooling valid,	1=cooling invalid
-	HighPressureSwitchStatus:              "HighPressureSwitchStatus",              // 1= on, 0= off 1= on, 0= off
-	LowPressureSwitchStatus:               "LowPressureSwitchStatus",               // 1=on, 0= off 1=on, 0= off
-	SecondHighPressureSwitchStatus:        "SecondHighPressureSwitchStatus",        // 1=on, 0= off 1=on, 0= off
-	InnerWaterFlowSwitch:                  "InnerWaterFlowSwitch",                  // 1=on, 0= off 1=on, 0= off
-	CompressorFrequency:                   "CompressorFrequency",                   // Displays the actual operating	frequency	Show actual frequency
-	ThermalSwitchStatus:                   "ThermalSwitchStatus",                   // 1=on, 0= off 1=on, 0= off
-	OutdoorFanMotor:                       "OutdoorFanMotor",                       // 1= run, 0= stop 1=on, 0= off
-	ElectricalValve1:                      "ElectricalValve1",                      // 1= run, 0= stop 1= run, 0= stop
-	ElectricalValve2:                      "ElectricalValve2",                      // 1= run, 0= stop 1= run, 0= stop
-	ElectricalValve3:                      "ElectricalValve3",                      // 1= run, 0= stop 1= run, 0= stop
-	ElectricalValve4:                      "ElectricalValve4",                      // 1= run, 0= stop 1= run, 0= stop
-	C4WaterPump:                           "C4WaterPump",                           // 1= run, 0= stop 1= run, 0= stop
-	C5WaterPump:                           "C5WaterPump",                           // 1= run, 0= stop 1= run, 0= stop
-	C6waterPump:                           "C6waterPump",                           // 1= run, 0= stop 1= run, 0= stop
-	AccumulativeDaysAFterLastVirusKilling: "AccumulativeDaysAFterLastVirusKilling", // The accumulative days after last	virus killing	0-99 (From the last complete	sterilization to the present,	cumulative number of days）	0-99 (from the last complete	sterilization to the present,	cumulative number of days)
-	OutdoorModularTemp:                    "OutdoorModularTemp",                    // -30~97℃ -30~97℃
-	ExpansionValve1OpeningDegree:          "ExpansionValve1OpeningDegree",          // 0~500 0~500
-	ExpansionValve2OpeningDegree:          "ExpansionValve2OpeningDegree",          // 0~500 0~500
-	InnerPipeTemp:                         "InnerPipeTemp",                         // -30~97℃ -30~97℃
-	HeatingMethod2TargetTemperature:       "HeatingMethod2TargetTemperature",       // -30~97℃ -30~97℃
-	IndoorTemperatureControlSwitch:        "IndoorTemperatureControlSwitch",        // 1=on, 0= off 1=on, 0= off
-	FanType:                               "FanType",                               // 0= AC fan, 1= EC fan 1,	2= EC fan 2	0= AC fan, 1= EC fan 1,	2= EC fan 2
-	ECFanMotor1Speed:                      "ECFanMotor1Speed",                      // 0~3000 0~3000
-	ECFanMotor2Speed:                      "ECFanMotor2Speed",                      //0~3000 0~3000
-	WaterPumpTypes:                        "WaterPumpTypes",                        // 0= AC Water pump	1= EC Water pump	0= AC Water pump	1= EC Water pump
-	InternalPumpSpeed:                     "InternalPumpSpeed",                     // (C4) 1~10 （10 Show 100%） 1~10 (10 means 100%)
-	BoosterPumpSpeed:                      "BoosterPumpSpeed",                      //1~10 （10 Show 100%） 1~10 (10 means 100%)
-	InductorACCurrent:                     "InductorACCurrent",                     //0~50A 0~50A
-	DriverWorkingStatusValue:              "DriverWorkingStatusValue",              //Hexadecimal value Hexadecimal values
-	CompressorShutDownCode:                "CompressorShutDownCode",                //Hexadecimal value Hexadecimal values
-	DriverAllowedHighestFrequency:         "DriverAllowedHighestFrequency",         //30-120Hz 30-120Hz
-	ReduceFrequencyTemperature:            "ReduceFrequencyTemperature",            //setting	55~200℃ 55~200℃
-	InputACVoltage:                        "InputACVoltage",                        //0~550V 0~550V
-	InputACCurrent:                        "InputACCurrent",                        //0~50A（IPM test） 0~50A（IPM Check）
-	CompressorPhaseCurrent:                "CompressorPhaseCurrent",                //0~50A（IPM test） 0~50A（IPM Check）
-	BusLineVoltage:                        "BusLineVoltage",                        //0~750V 0~750V
-	FanShutdownCode:                       "FanShutdownCode",                       // Hexadecimal value Hexadecimal values
-	IPMTemp:                               "IPMTemp",                               //55~200℃ 55~200℃
-	CompressorTotalRunningTime:            "CompressorTotalRunningTime",            //	Will reset after power cycle	0~65000 0~65000 hour
-
-	CurrentFaultCode: "Fault Code?", // Set to 32 when I get a P5 error code.
+	P08Status:                             "P08Status",                             // 0=DHW valid, 1=DHW invalid
+	P09Status:                             "P09Status",                             // 0=Heating valid, 1=Heating invalid
+	P10Status:                             "P10Status",                             // 0=Cooling valid, 1=Cooling invalid
+	HighPressureSwitchStatus:              "HighPressureSwitchStatus",              // 1=on, 0=off
+	LowPressureSwitchStatus:               "LowPressureSwitchStatus",               // 1=on, 0=off
+	SecondHighPressureSwitchStatus:        "SecondHighPressureSwitchStatus",        // 1=on, 0=off
+	InnerWaterFlowSwitch:                  "InnerWaterFlowSwitch",                  // 1=on, 0=off
+	CompressorFrequency:                   "CompressorFrequency",                   // Displays the actual operating frequency
+	ThermalSwitchStatus:                   "ThermalSwitchStatus",                   // 1=on, 0=off
+	OutdoorFanMotor:                       "OutdoorFanMotor",                       // 1=on, 0=off
+	ElectricalValve1:                      "ElectricalValve1",                      // 1=run, 0=stop
+	ElectricalValve2:                      "ElectricalValve2",                      // 1=run, 0=stop
+	ElectricalValve3:                      "ElectricalValve3",                      // 1=run, 0=stop
+	ElectricalValve4:                      "ElectricalValve4",                      // 1=run, 0=stop
+	C4WaterPump:                           "C4WaterPump",                           // 1=run, 0=stop
+	C5WaterPump:                           "C5WaterPump",                           // 1=run, 0=stop
+	C6waterPump:                           "C6waterPump",                           // 1=run, 0=stop
+	AccumulativeDaysAFterLastVirusKilling: "AccumulativeDaysAFterLastVirusKilling", // Days since last virus killing 0-99
+	OutdoorModularTemp:                    "OutdoorModularTemp",                    // -30~97 celsius
+	ExpansionValve1OpeningDegree:          "ExpansionValve1OpeningDegree",          // 0~500
+	ExpansionValve2OpeningDegree:          "ExpansionValve2OpeningDegree",          // 0~500
+	InnerPipeTemp:                         "InnerPipeTemp",                         // -30~97 celsius
+	HeatingMethod2TargetTemperature:       "HeatingMethod2TargetTemperature",       // -30~97 celsius
+	IndoorTemperatureControlSwitch:        "IndoorTemperatureControlSwitch",        // 1=on, 0=off
+	FanType:                               "FanType",                               // 0= AC fan, 1=EC fan 1, 2=EC fan 2
+	ECFanMotor1Speed:                      "ECFanMotor1Speed",                      // 0~3000
+	ECFanMotor2Speed:                      "ECFanMotor2Speed",                      // 0~3000
+	WaterPumpTypes:                        "WaterPumpTypes",                        // 0=AC Water pump, 1=EC Water pump
+	InternalPumpSpeed:                     "InternalPumpSpeed",                     // (C4) 1~10 (10 means 100%)
+	BoosterPumpSpeed:                      "BoosterPumpSpeed",                      // 1~10 (10 means 100%)
+	InductorACCurrent:                     "InductorACCurrent",                     // 0~50A
+	DriverWorkingStatusValue:              "DriverWorkingStatusValue",              // Hexadecimal value
+	CompressorShutDownCode:                "CompressorShutDownCode",                // Hexadecimal value
+	DriverAllowedHighestFrequency:         "DriverAllowedHighestFrequency",         // 30-120Hz
+	ReduceFrequencyTemperature:            "ReduceFrequencyTemperature",            // setting 55~200 celsius
+	InputACVoltage:                        "InputACVoltage",                        // 0~550V
+	InputACCurrent:                        "InputACCurrent",                        // 0~50A（IPM test)
+	CompressorPhaseCurrent:                "CompressorPhaseCurrent",                // 0~50A（IPM test)
+	BusLineVoltage:                        "BusLineVoltage",                        // 0~750V
+	FanShutdownCode:                       "FanShutdownCode",                       // Hexadecimal value
+	IPMTemp:                               "IPMTemp",                               // 55~200 celsius
+	CompressorTotalRunningTime:            "CompressorTotalRunningTime",            // Hours since last power cycle 0~65000
+	CurrentFaultCode:                      "Fault Code?",                           // Set to 32 when I get a P5 error code.
 }
