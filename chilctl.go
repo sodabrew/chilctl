@@ -50,9 +50,9 @@ func main() {
 
 	if *rawFlag {
 		fmt.Printf("%+v\n", state)
+	} else {
+		printState(state)
 	}
-
-	printState(state)
 
 	if *setCoolingTemp != "" {
 		temp, err := parseTemperatureFlag(*setCoolingTemp)
