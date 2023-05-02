@@ -15,6 +15,7 @@ var (
 	ttyDevice      = flag.String("tty", "/dev/ttyUSB0", "Path to RS-4845 serial port.")
 	unitId         = flag.Int("unit", 1, "Device unit id number.")
 	rawFlag        = flag.Bool("raw", false, "Print the raw register values.")
+	setMode        = flag.String("set-mode", "", "Set heating/cooling mode: H, C, HW, CW")
 	setHeatingTemp = flag.String("set-heating-temp", "", "Set heating target temperature (must add C or F suffix, e.g. 35C)")
 	setCoolingTemp = flag.String("set-cooling-temp", "", "Set cooling target temperature (must add C or F suffix, e.g. 50F)")
 	setDHWTemp     = flag.String("set-dhw-temp", "", "Set the domestic hot water target temperature (must add C or F suffix, e.g. 130F)")
@@ -83,6 +84,28 @@ func main() {
 		cxClient.SetDomesticHotWaterTemp(temp)
 	}
 
+	if *setMode != "" {
+		var mode cx34.AirConditioningMode = 0
+		switch *setMode {
+		case "C":
+			mode = cx34.AirConditioningModeCooling
+		case "H":
+			mode = cx34.AirConditioningModeHeating
+		case "CW":
+			mode = cx34.AirConditioningModeCoolDHW
+		case "HW":
+			mode = cx34.AirConditioningModeHeatDHW
+		case "W":
+			mode = cx34.AirConditioningModeOnlyDHW
+		default:
+			glog.Errorf("invalid mode: %v ", *setMode)
+			return
+		}
+
+		fmt.Printf("Setting mode to %s\n", mode)
+		cxClient.SetACMode(mode)
+	}
+
 	return
 }
 
@@ -135,7 +158,7 @@ func printState(state *cx34.State) {
 		cop, runningStr,
 		state.ApparentPower(),
 		state.AmbientTemp().Fahrenheit(),
-		state.HotWaterTankTemp().Fahrenheit(),
+		state.DomesticHotWaterTankTemp().Fahrenheit(),
 		state.ACCoolingTargetTemp().Fahrenheit(),
 		state.ACHeatingTargetTemp().Fahrenheit(),
 		state.DomesticHotWaterTargetTemp().Fahrenheit(),

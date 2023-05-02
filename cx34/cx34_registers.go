@@ -75,10 +75,10 @@ func (s *State) AmbientTemp() units.Temperature {
 	return units.FromCelsius(float64(deciDegreesC) / 10.0)
 }
 
-// HotWaterTankTemp returns the temperature reported by the CX34's temperature
+// DomesticHotWaterTankTemp returns the temperature reported by the CX34's temperature
 // sensor on the hot water tank, if connected.
-func (s *State) HotWaterTankTemp() units.Temperature {
-	deciDegreesC := s.registerValues[DomesticHotWaterTemp]
+func (s *State) DomesticHotWaterTankTemp() units.Temperature {
+	deciDegreesC := s.registerValues[DomesticHotWaterTankTemp]
 	return units.FromCelsius(float64(deciDegreesC) / 10.0)
 }
 
@@ -188,9 +188,9 @@ type AirConditioningMode uint8
 const (
 	AirConditioningModeCooling AirConditioningMode = 0
 	AirConditioningModeHeating AirConditioningMode = 1
-	AirConditioningModeHeatDHW AirConditioningMode = 2 // FIXME: this is a guess
-	AirConditioningModeCoolDHW AirConditioningMode = 3 // Confirmed
-	AirConditioningModeOnlyDHW AirConditioningMode = 4 // FIXME: this is a guess
+	AirConditioningModeOnlyDHW AirConditioningMode = 2
+	AirConditioningModeCoolDHW AirConditioningMode = 3
+	AirConditioningModeHeatDHW AirConditioningMode = 4
 )
 
 var validACModes = map[AirConditioningMode]struct{}{
@@ -342,6 +342,7 @@ const (
 	FanShutdownCode                       Register = 259 // Hexadecimal value Hexadecimal values
 	IPMTemp                               Register = 260 //55~200℃ 55~200℃
 	CompressorTotalRunningTime            Register = 261 //	Will reset after power cycle	0~65000 0~65000 hour
+	DomesticHotWaterTankTemp              Register = 280
 
 	// Inferred values.
 	WaterInletSensorTemp1 Register = 281
@@ -355,7 +356,8 @@ var registerNames = map[Register]string{
 	ACMode:                  "ACMode",
 	TargetACCoolingModeTemp: "TargetACCoolingModeTemp",
 	TargetACHeatingModeTemp: "TargetACHeatingModeTemp",
-	144:                     "TargetDomesticHotWaterTemp", // was: "Din7 AC Cooling Mode Switch",
+	TargetDomesticHotWaterTemp: "TargetDomesticHotWaterTemp", // was: "Din7 AC Cooling Mode Switch",
+	DomesticHotWaterTankTemp: "DomesticHotWaterTankTemp",
 	// Starting at 200, it's all the C parameters from the details screen.
 	WaterInletSensorTemp1: "WaterInletSensorTemp1",
 	WaterInletSensorTemp2: "WaterInletSensorTemp2",

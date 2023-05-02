@@ -136,6 +136,18 @@ func (c *Client) ReadState() (*State, error) {
 	return &State{time.Now(), m}, nil
 }
 
+func (c *Client) SetACMode(m AirConditioningMode) error {
+	if m < 0 || m > 4 {
+		return fmt.Errorf("mode is out of range 0-4: %v", m)
+	}
+	registerValue := uint16(m)
+	res, err := c.c.WriteSingleRegister(ACMode.uint16(), registerValue)
+	if err != nil {
+		return fmt.Errorf("WriteSingleRegister error: %w (returned bytes %v)", err, res)
+	}
+	return nil
+}
+
 // SetHeatingTemp sets the target heating temperature for the CX34.
 func (c *Client) SetHeatingTemp(t units.Temperature) error {
 	deg := t.Celsius()
