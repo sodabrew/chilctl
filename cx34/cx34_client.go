@@ -136,6 +136,18 @@ func (c *Client) ReadState() (*State, error) {
 	return &State{time.Now(), m}, nil
 }
 
+func (c *Client) SetOnOffMode(onoff bool) error {
+	onoffint := 0
+	if onoff {
+		onoffint = 1
+	}
+	res, err := c.c.WriteSingleRegister(OnOffMode.uint16(), uint16(onoffint))
+	if err != nil {
+		return fmt.Errorf("WriteSingleRegister error: %w (returned bytes %v)", err, res)
+	}
+	return nil
+}
+
 func (c *Client) SetACMode(m AirConditioningMode) error {
 	if m < 0 || m > 4 {
 		return fmt.Errorf("mode is out of range 0-4: %v", m)

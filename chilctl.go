@@ -15,6 +15,8 @@ var (
 	ttyDevice      = flag.String("tty", "/dev/ttyUSB0", "Path to RS-4845 serial port.")
 	unitId         = flag.Int("unit", 1, "Device unit id number.")
 	rawFlag        = flag.Bool("raw", false, "Print the raw register values.")
+	setModeActive  = flag.Bool("active", false, "Set active mode.")
+	setModeStandby = flag.Bool("standby", false, "Set standby mode.")
 	setMode        = flag.String("set-mode", "", "Set heating/cooling mode: H, C, HW, CW")
 	setHeatingTemp = flag.String("set-heating-temp", "", "Set heating target temperature (must add C or F suffix, e.g. 35C)")
 	setCoolingTemp = flag.String("set-cooling-temp", "", "Set cooling target temperature (must add C or F suffix, e.g. 50F)")
@@ -52,6 +54,26 @@ func main() {
 		fmt.Printf("%+v\n", state)
 	} else {
 		printState(state)
+	}
+
+	if *setModeActive && *setModeStandby {
+		glog.Errorf("error: cannot set both active and standby")
+		return
+	}
+
+	if *setModeActive || *setModeStandby {
+		active := *setModeActive || !*setModeStandby
+		if active {
+			fmt.Printf("Setting active mode\n")
+		} else {
+			fmt.Printf("Setting standby mode\n")
+		}
+		err := cxClient.SetOnOffMode(active)
+		if err != nil{
+			glog.Errorf("error parsing temperature: %v", err)
+			return
+		}
+
 	}
 
 	if *setCoolingTemp != "" {
@@ -140,6 +162,7 @@ func printState(state *cx34.State) {
 
 	fmt.Printf(
 `Summary for CX34 unit %d:
+  Mode: %d
   Mode: %s
   COP: %.2f (%s)
   Power: %.2f Watts
@@ -154,6 +177,7 @@ func printState(state *cx34.State) {
   Useful Heat Rate: %s
 `,
 		*unitId,
+		state.OnOffMode(),
 		state.ACMode(),
 		cop, runningStr,
 		state.ApparentPower(),

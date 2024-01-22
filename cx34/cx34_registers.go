@@ -170,6 +170,11 @@ func (s *State) DeltaT() units.Temperature {
 	return s.ACOutletWaterTemp() - s.ACInletWaterTemp()
 }
 
+func (s *State) OnOffMode() bool {
+	raw := s.registerValues[OnOffMode]
+	return raw != 0
+}
+
 // ACMode returns the operating mode of the machine as a string
 func (s *State) ACMode() AirConditioningMode {
 	raw := s.registerValues[ACMode]
@@ -278,6 +283,7 @@ Table of registers with values that changed
 
 // Known Register values.
 const (
+	OnOffMode                             Register = 140 // 0 = off (standby), 1 = on
 	ACMode                                Register = 141 // 0 = cool, 1 = heat
 	TargetACCoolingModeTemp               Register = 142
 	TargetACHeatingModeTemp               Register = 143
@@ -351,6 +357,7 @@ const (
 
 // Source: https://www.chiltrix.com/control-options/Remote-Gateway-BACnet-Guide-rev2.pdf
 var registerNames = map[Register]string{
+	OnOffMode:                             "OnOffMode",
 	ACMode:                                "ACMode",
 	TargetACCoolingModeTemp:               "TargetACCoolingModeTemp",
 	TargetACHeatingModeTemp:               "TargetACHeatingModeTemp",
